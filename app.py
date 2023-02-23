@@ -18,7 +18,7 @@ app.config["SECRET_KEY"] = "O secreta foarte secreta"
 debug = DebugToolbarExtension(app)
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 
-app.config["SQALCHEMY_DATABASE_URI"] = "postresql:///adoption"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///adoption"
 
 
 
@@ -27,9 +27,10 @@ app.config["SQALCHEMY_DATABASE_URI"] = "postresql:///adoption"
 
 if __name__ == "__main__":
 
+    print("In main block of app.py")
     connect_db(app)
 
     with app.app_context():
         db.create_all()
 
-    app.run(host='0.0.0.0', port=5000, debug=True, threaded=False)
+    app.run(host='127.0.0.1', port=5000, debug=True, threaded=False)
