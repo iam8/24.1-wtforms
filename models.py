@@ -35,4 +35,4 @@ class Pet(db.Model):
     photo_url = db.Column(db.Text, server_default=DEFAULT_IMG)
     age = db.Column(db.Integer, CheckConstraint("age >= 0"))
     notes = db.Column(db.Text)
-    available = db.Column(db.Boolean, nullable=False, server_default=True)
+    available = db.Column(db.Boolean, nullable=False, server_default="True")
