@@ -10,9 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.schema import CheckConstraint
 
 # TODO: fix long string problem below; resort to using too-long line if no other solution
-DEFAULT_IMG = ("https://i1.wp.com/thefamilysupportcenter.org/wp-content/uploads/2018/04/"
-               "kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0."
-               "414908415236412514244.png")
+DEFAULT_IMG = "https://i.etsystatic.com/13787953/r/il/d960d8/1552825710/il_fullxfull.1552825710_eoka.jpg"
 db = SQLAlchemy()
 
 
