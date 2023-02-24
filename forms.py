@@ -23,7 +23,7 @@ class AddPetForm(FlaskForm):
     photo_url = StringField("Photo URL",
                             validators=[Optional(), URL()])
     age = IntegerField("Age (years)",
-                       validators=[NumberRange(0, 30)])
+                       validators=[Optional(), NumberRange(0, 30)])
     notes = TextAreaField("Notes",
                           validators=[Optional()])
 
