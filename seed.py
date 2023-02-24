@@ -14,7 +14,7 @@ from app import app, connect_db
 
 if __name__ == "__main__":
 
-    connect_db(db)
+    connect_db(app)
 
     # Drop and create all tables
     with app.app_context():
