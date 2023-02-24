@@ -9,7 +9,7 @@ Main Flask application.
 from flask import Flask, redirect, render_template
 from flask_debugtoolbar import DebugToolbarExtension
 
-from models import db, connect_db, Pet
+from models import db, connect_db, Pet, DEFAULT_IMG
 from forms import AddPetForm, EditPetForm
 
 
@@ -20,7 +20,7 @@ debug = DebugToolbarExtension(app)
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///adoption"
-app.config['SQLALCHEMY_ECHO'] = True
+# app.config['SQLALCHEMY_ECHO'] = True
 
 
 # HOMEPAGE ----------------------------------------------------------------------------------------
@@ -57,6 +57,10 @@ def add_pet():
         new_pet = Pet()
         form.populate_obj(new_pet)
 
+        # Handle empty input for photo_url such that the default image will be used
+        if not form.photo_url.data:
+            new_pet.photo_url = None
+
         db.session.add(new_pet)
         db.session.commit()
         return redirect("/")
@@ -84,8 +88,9 @@ def display_and_edit_pet(pet_id):
     form = EditPetForm(obj=pet)
 
     if form.validate_on_submit():
+        url = form.photo_url.data
 
-        pet.photo_url = form.photo_url.data
+        pet.photo_url = url if url else DEFAULT_IMG
         pet.notes = form.notes.data
         pet.available = True if form.available.data == "True" else False
 
