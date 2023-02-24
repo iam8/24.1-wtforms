@@ -28,18 +28,18 @@ if __name__ == "__main__":
                    species="Dog",
                    age=1,
                    notes="Cute and cuddly Beagle puppy",
-                   available=True)
+                   is_available=True)
 
         pricky = Pet(name="Pricky",
                      species="Porcupine",
                      age=5,
                      notes="Watch out. He bites.",
-                     available=True)
+                     is_available=True)
 
         gideon = Pet(name="Gideon",
                      species="Cat",
                      age=10,
-                     available=False)
+                     is_available=False)
 
         db.session.add_all([spot, pricky, gideon])
         db.session.commit()

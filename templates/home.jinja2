@@ -23,7 +23,7 @@
             <img class="pet-img" src="{{ pet.photo_url }}" alt="{{ pet.name }}">
         </div>
         <div>
-            {% if pet.available %}
+            {% if pet.is_available %}
                 <b>{{ pet.name }} is available!</b>
             {% else %}
             {% endif %}
