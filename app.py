@@ -52,8 +52,13 @@ def add_pet():
     form = AddPetForm()
 
     if form.validate_on_submit():
-        new_pet = Pet()
-        form.populate_obj(new_pet)
+
+        name = form.name.data
+        species = form.species.data
+        age = form.age.data
+        notes = form.notes.data
+
+        new_pet = Pet(name=name, species=species, age=age, notes=notes)
         db.session.add(new_pet)
         db.session.commit()
         return redirect("/")
