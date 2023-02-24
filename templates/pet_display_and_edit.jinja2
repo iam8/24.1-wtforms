@@ -11,7 +11,11 @@
     <h1>{{ pet.name }}</h1>
 
     <section>
-
+        <div>
+            <img class="pet-img" src="{{ pet.photo_url }}" alt="{{ pet.name }}">
+        </div>
+        <div>Species: {{ pet.species }}</div>
+        <div>Age (years): {{ pet.age }}</div>
     </section>
 
     <section>
@@ -20,7 +24,7 @@
             {{ form.hidden_tag() }}
 
             {% for field in form
-            if field.widget.input_type != "hidden" %}
+               if field.widget.input_type != "hidden" %}
 
                 {% if field.type == "RadioField" %}
                     {{ field.label }}
