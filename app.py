@@ -94,7 +94,7 @@ def display_and_edit_pet(pet_id):
         pet.photo_url = url if url else DEFAULT_IMG
 
         pet.notes = form.notes.data
-        pet.is_available = True if form.available.data == "True" else False
+        pet.is_available = True if form.is_available.data == "True" else False
 
         db.session.commit()
 
