@@ -10,6 +10,7 @@ from flask import Flask, request, redirect, render_template
 from flask_debugtoolbar import DebugToolbarExtension
 
 from models import db, connect_db, Pet
+from forms import AddPetForm
 
 
 app = Flask(__name__)
@@ -31,6 +32,33 @@ def homepage():
 
     pets = Pet.query.all()
     return render_template("home.jinja2", pets=pets)
+
+# -------------------------------------------------------------------------------------------------
+
+
+# ADDING PETS -------------------------------------------------------------------------------------
+
+@app.route("/add", methods=["GET", "POST"])
+def add_pet():
+    """
+    Route for adding a new pet.
+
+    This route:
+    > Displays form to add a new pet
+    > Validates a new pet
+    > Creates and adds the new pet
+    """
+
+    form = AddPetForm()
+
+    if form.validate_on_submit():
+        new_pet = Pet()
+        form.populate_obj(new_pet)
+        db.session.add(new_pet)
+        db.session.commit()
+        return redirect("/")
+
+    return render_template("pet_add_form.jinja2", form=form)
 
 # -------------------------------------------------------------------------------------------------
 
