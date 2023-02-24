@@ -39,7 +39,6 @@ def homepage():
 
 if __name__ == "__main__":
 
-    print("In main block of app.py")
     connect_db(app)
 
     with app.app_context():
