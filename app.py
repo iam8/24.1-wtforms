@@ -21,6 +21,17 @@ app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///adoption"
 
 
+# HOMEPAGE ----------------------------------------------------------------------------------------
+
+@app.route("/")
+def homepage():
+    """
+    Homepage route. Displays a list of the pets currently at the adoption agency.
+    """
+
+    return render_template("home.jinja2")
+
+# -------------------------------------------------------------------------------------------------
 
 
 # MAIN --------------------------------------------------------------------------------------------
