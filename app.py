@@ -93,7 +93,7 @@ def display_and_edit_pet(pet_id):
 
         db.session.commit()
 
-    return render_template("pet_display_and_edit.jinja2", form=form)
+    return render_template("pet_display_and_edit.jinja2", pet=pet, form=form)
 
 # -------------------------------------------------------------------------------------------------
 
