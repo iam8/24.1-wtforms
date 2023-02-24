@@ -20,6 +20,7 @@ debug = DebugToolbarExtension(app)
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///adoption"
+app.config['SQLALCHEMY_ECHO'] = True
 
 
 # HOMEPAGE ----------------------------------------------------------------------------------------
@@ -89,7 +90,7 @@ def display_and_edit_pet(pet_id):
 
         pet.photo_url = form.photo_url.data
         pet.notes = form.notes.data
-        pet.available = form.available.data
+        pet.available = True if form.available.data == "True" else False
 
         db.session.commit()
 
