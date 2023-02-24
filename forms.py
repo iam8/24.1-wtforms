@@ -37,4 +37,5 @@ class EditPetForm(FlaskForm):
                             validators=[Optional(), URL()])
     notes = TextAreaField("Notes",
                           validators=[Optional()])
-    available = RadioField("Available for adoption?")
+    available = RadioField("Available for adoption?",
+                           choices=[("True", "Yes"), ("False", "No")])
