@@ -8,20 +8,36 @@
 
 {% block content %}
 
+    <h1>{{ pet.name }}</h1>
+
+    <h3>Edit Pet</h3>
     <form method="POST">
         {{ form.hidden_tag() }}
 
         {% for field in form
            if field.widget.input_type != "hidden" %}
 
-            <p>
-                {{ field.label }}
-                {{ field }}
+            {% if field.type == "RadioField" %}
+                <div>{{ field.label }}</div>
+                <div>
+                    {% for subfield in field %}
+                        <span>
+                            {{ subfield }}
+                            {{ subfield.label }}
+                        </span>
+                    {% endfor %}
+                </div>
 
-                {% for error in field.errors %}
-                    {{ error }}
-                {% endfor %}
-            </p>
+            {% else %}
+                <div>
+                    <div>{{ field.label }}</div>
+                    <div>{{ field }}</div>
+                </div>
+            {% endif %}
+
+            {% for error in field.errors %}
+                {{ error }}
+            {% endfor %}
 
         {% endfor %}
 
