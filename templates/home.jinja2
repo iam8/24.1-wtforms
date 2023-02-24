@@ -17,16 +17,14 @@
     {% for pet in pets %}
         <h2>
             <a href="/{{ pet.id }}">{{ pet.name }}</a>
+            {% if pet.is_available %}
+                <b>is available!</b>
+            {% else %}
+            {% endif %}
         </h2>
 
         <div>
             <img class="pet-img" src="{{ pet.photo_url }}" alt="{{ pet.name }}">
-        </div>
-        <div>
-            {% if pet.is_available %}
-                <b>{{ pet.name }} is available!</b>
-            {% else %}
-            {% endif %}
         </div>
     {% endfor %}
 
