@@ -15,7 +15,13 @@
             <img class="pet-img" src="{{ pet.photo_url }}" alt="{{ pet.name }}">
         </div>
         <div>Species: {{ pet.species }}</div>
-        <div>Age (years): {{ pet.age }}</div>
+
+        {% if pet.age is not none %}
+            <div>Age (years): {{ pet.age }}</div>
+        {% else %}
+            <div>No age submitted</div>
+        {% endif %}
+
     </section>
 
     <section>
