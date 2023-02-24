@@ -7,7 +7,7 @@ Form model creation and setup.
 """
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, TextAreaField, SelectField
+from wtforms import StringField, IntegerField, TextAreaField
 
 
 class AddPetForm(FlaskForm):
@@ -20,4 +20,3 @@ class AddPetForm(FlaskForm):
     photo_url = StringField("Photo URL")
     age = IntegerField("Age (years)")
     notes = TextAreaField("Notes")
-    available = SelectField("Available (Y/N)")
