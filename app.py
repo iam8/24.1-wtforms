@@ -3,7 +3,7 @@
 # Pet Adoption Agency
 
 """
-Main Flask application.
+Main Flask application: route and view function definitions.
 """
 
 from flask import Flask, redirect, render_template

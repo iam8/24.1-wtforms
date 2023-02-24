@@ -25,7 +25,7 @@ def connect_db(app):
 
 class Pet(db.Model):
     """
-    Model for a pet available for adoption.
+    Model for a pet at an adoption agency.
     """
 
     __tablename__ = "pets"
