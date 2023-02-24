@@ -8,6 +8,7 @@ Form model creation and setup.
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, TextAreaField
+from wtforms.validators import InputRequired, Optional, URL, AnyOf, NumberRange
 
 
 class AddPetForm(FlaskForm):
@@ -15,8 +16,13 @@ class AddPetForm(FlaskForm):
     Form for adding a new pet.
     """
 
-    name = StringField("Pet name")
-    species = StringField("Species")
-    photo_url = StringField("Photo URL")
-    age = IntegerField("Age (years)")
-    notes = TextAreaField("Notes")
+    name = StringField("Pet name",
+                       validators=[InputRequired()])
+    species = StringField("Species",
+                          validators=[InputRequired(), AnyOf({"cat", "dog", "porcupine"})])
+    photo_url = StringField("Photo URL",
+                            validators=[Optional(), URL()])
+    age = IntegerField("Age (years)",
+                       validators=[NumberRange(0, 30)])
+    notes = TextAreaField("Notes",
+                          validators=[Optional()])
