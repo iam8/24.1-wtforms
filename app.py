@@ -57,7 +57,7 @@ def add_pet():
         new_pet = Pet()
         form.populate_obj(new_pet)
 
-        # Handle empty input for photo_url such that the default image will be used
+        # Ensure default img is used if no URL is provided
         if not form.photo_url.data:
             new_pet.photo_url = None
 
@@ -88,9 +88,11 @@ def display_and_edit_pet(pet_id):
     form = EditPetForm(obj=pet)
 
     if form.validate_on_submit():
-        url = form.photo_url.data
 
+        # Ensure default img is used if no URL is provided
+        url = form.photo_url.data
         pet.photo_url = url if url else DEFAULT_IMG
+
         pet.notes = form.notes.data
         pet.is_available = True if form.available.data == "True" else False
 
