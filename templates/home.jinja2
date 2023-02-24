@@ -7,5 +7,21 @@
 {% extends "base.jinja2" %}
 
 {% block content %}
-    {{ pets }}
+
+    <h1>Pets</h1>
+
+    {% for pet in pets %}
+        <h2>{{ pet.name }}</h2>
+
+        <div>
+            <img src="{{ pet.photo_url }}" alt="{{ pet.name }}">
+        </div>
+        <div>
+            {% if pet.available %}
+                <b>{{ pet.name }} is available!</b>
+            {% else %}
+            {% endif %}
+        </div>
+    {% endfor %}
+
 {% endblock content %}
