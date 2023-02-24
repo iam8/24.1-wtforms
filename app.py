@@ -10,7 +10,7 @@ from flask import Flask, request, redirect, render_template
 from flask_debugtoolbar import DebugToolbarExtension
 
 from models import db, connect_db, Pet
-from forms import AddPetForm
+from forms import AddPetForm, EditPetForm
 
 
 app = Flask(__name__)
@@ -44,9 +44,9 @@ def add_pet():
     Route for adding a new pet.
 
     This route:
-    > Displays form to add a new pet
-    > Validates a new pet
-    > Creates and adds the new pet
+        - Displays form to add a new pet
+        - Validates user-entered form field values
+        - Creates and adds the new pet (if validation successful)
     """
 
     form = AddPetForm()
@@ -64,6 +64,36 @@ def add_pet():
         return redirect("/")
 
     return render_template("pet_add_form.jinja2", form=form)
+
+# -------------------------------------------------------------------------------------------------
+
+
+# EDITING PETS ------------------------------------------------------------------------------------
+
+@app.route("/<int:pet_id>", methods=["GET", "POST"])
+def display_and_edit_pet(pet_id):
+    """
+    Route for displaying information about a pet with a given ID and for editing that pet.
+
+    This route:
+        - Displays information about the pet with the given ID
+        - Displays an edit form for the pet with the given ID
+        - Validates user-entered form field values
+        - Updates the pet (if validation successful)
+    """
+
+    pet = Pet.query.get_or_404(pet_id)
+    form = EditPetForm(obj=pet)
+
+    if form.validate_on_submit():
+
+        pet.photo_url = form.photo_url.data
+        pet.notes = form.notes.data
+        pet.available = form.available.data
+
+        db.session.commit()
+
+    return render_template("pet_display_and_edit.jinja2", form=form)
 
 # -------------------------------------------------------------------------------------------------
 
