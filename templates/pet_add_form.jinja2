@@ -10,10 +10,6 @@
 
     <h1>Add New Pet</h1>
 
-    <div>
-        <a href="/">Return to home</a>
-    </div>
-
     <form method="POST">
         {{ form.hidden_tag() }}
 
@@ -31,7 +27,7 @@
 
         {% endfor %}
 
-        <button type="submit">Add</button>
+        <button type="submit" class="btn btn-success">Add</button>
     </form>
 
 {% endblock content %}
