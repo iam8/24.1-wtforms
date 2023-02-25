@@ -6,7 +6,7 @@
 Main Flask application: route and view function definitions.
 """
 
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, flash
 from flask_debugtoolbar import DebugToolbarExtension
 
 from models import db, connect_db, Pet, DEFAULT_IMG
@@ -63,6 +63,8 @@ def add_pet():
 
         db.session.add(new_pet)
         db.session.commit()
+
+        flash(f"Successfully added pet '{new_pet.name}'!")
         return redirect("/")
 
     return render_template("pet_add_form.jinja2", form=form)
@@ -97,6 +99,8 @@ def display_and_edit_pet(pet_id):
         pet.is_available = True if form.is_available.data == "True" else False
 
         db.session.commit()
+
+        flash(f"Successfully edited pet '{pet.name}'!")
 
     return render_template("pet_display_and_edit.jinja2", pet=pet, form=form)
 
