@@ -12,7 +12,7 @@
 
     <div class="row">
         {% for pet in pets %}
-            <div class="col">
+            <div class="col-4">
                 <h2>
                     <a href="/{{ pet.id }}">{{ pet.name }}</a>
                     {% if pet.is_available %}
@@ -22,7 +22,7 @@
                 </h2>
 
                 <div>
-                    <img class="pet-img" src="{{ pet.photo_url }}" alt="{{ pet.name }}">
+                    <img class="pet-home-img" src="{{ pet.photo_url }}" alt="{{ pet.name }}">
                 </div>
             </div>
         {% endfor %}
