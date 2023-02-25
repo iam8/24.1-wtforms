@@ -10,18 +10,22 @@
 
     <h1 class="display-1">Pets</h1>
 
-    {% for pet in pets %}
-        <h2>
-            <a href="/{{ pet.id }}">{{ pet.name }}</a>
-            {% if pet.is_available %}
-                <b>is available!</b>
-            {% else %}
-            {% endif %}
-        </h2>
+    <div class="row">
+        {% for pet in pets %}
+            <div class="col">
+                <h2>
+                    <a href="/{{ pet.id }}">{{ pet.name }}</a>
+                    {% if pet.is_available %}
+                        <b>is available!</b>
+                    {% else %}
+                    {% endif %}
+                </h2>
 
-        <div>
-            <img class="pet-img" src="{{ pet.photo_url }}" alt="{{ pet.name }}">
-        </div>
-    {% endfor %}
+                <div>
+                    <img class="pet-img" src="{{ pet.photo_url }}" alt="{{ pet.name }}">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock content %}
