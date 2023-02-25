@@ -13,21 +13,27 @@
     <form method="POST">
         {{ form.hidden_tag() }}
 
-        {% for field in form
-           if field.widget.input_type != "hidden" %}
+        <fieldset>
+            {% for field in form
+            if field.widget.input_type != "hidden" %}
 
-            <div>
-                {{ field.label }}
-                <div>{{ field }}</div>
-            </div>
+                <div class="form-group">
+                    <b>{{ field.label(class="mt-2") }}</b>
+                    {% if field.type == "TextAreaField" %}
+                        <div>{{ field(class="form-control", rows="3") }}</div>
+                    {% else %}
+                        <div>{{ field(class="form-control") }}</div>
+                    {% endif %}
+                </div>
 
-            {% for error in field.errors %}
-                {{ error }}
+                {% for error in field.errors %}
+                    {{ error }}
+                {% endfor %}
+
             {% endfor %}
+        </fieldset>
 
-        {% endfor %}
-
-        <button type="submit" class="btn btn-success">Add</button>
+        <button type="submit" class="btn btn-success mt-3">Add</button>
     </form>
 
 {% endblock content %}
