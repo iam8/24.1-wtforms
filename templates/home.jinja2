@@ -15,16 +15,26 @@
     <div class="row">
         {% for pet in pets %}
             <div class="col-4">
-                <h2>
-                    <a href="/{{ pet.id }}">{{ pet.name }}</a>
-                    {% if pet.is_available %}
-                        <b>is available!</b>
-                    {% else %}
-                    {% endif %}
-                </h2>
-
-                <div>
+                <div class="card border-primary mb-3">
                     <img class="pet-home-img" src="{{ pet.photo_url }}" alt="{{ pet.name }}">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <b>
+                                {{ pet.name }}
+                                {% if pet.is_available %}
+                                    is available!
+                                {% else %}
+                                {% endif %}
+                            </b>
+                        </h4>
+
+                        {% if pet.notes %}
+                            <p class="card-text">{{ pet.notes }}</p>
+                        {% else %}
+                        {% endif %}
+
+                        <a href="/{{ pet.id }}" class="btn btn-primary">View pet info</a>
+                    </div>
                 </div>
             </div>
         {% endfor %}
