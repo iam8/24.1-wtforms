@@ -17,15 +17,20 @@ class AddPetForm(FlaskForm):
     """
 
     name = StringField("Pet name",
-                       validators=[InputRequired()])
+                       validators=[InputRequired()],
+                       render_kw={"placeholder": "Enter a pet name"})
     species = StringField("Species",
-                          validators=[InputRequired(), AnyOf({"cat", "dog", "porcupine"})])
+                          validators=[InputRequired(), AnyOf({"cat", "dog", "porcupine"})],
+                          render_kw={"placeholder": "Enter a species"})
     photo_url = StringField("Photo URL",
-                            validators=[Optional(), URL()])
+                            validators=[Optional(), URL()],
+                            render_kw={"placeholder": "Optional - enter a URL to a photo"})
     age = FloatField("Age (years)",
-                     validators=[Optional(), NumberRange(0, 30)])
+                     validators=[Optional(), NumberRange(0, 30)],
+                     render_kw={"placeholder": "Optional - enter an age (0-30, inclusive)"})
     notes = TextAreaField("Notes",
-                          validators=[Optional()])
+                          validators=[Optional()],
+                          render_kw={"placeholder": "Optional - add any notes about this pet"})
 
 
 class EditPetForm(FlaskForm):
@@ -34,8 +39,10 @@ class EditPetForm(FlaskForm):
     """
 
     photo_url = StringField("Photo URL",
-                            validators=[Optional(), URL()])
+                            validators=[Optional(), URL()],
+                            render_kw={"placeholder": "Optional - enter a URL to a photo"})
     notes = TextAreaField("Notes",
-                          validators=[Optional()])
+                          validators=[Optional()],
+                          render_kw={"placeholder": "Optional - add any notes about this pet"})
     is_available = RadioField("Available for adoption?",
                               choices=[("True", "Yes"), ("False", "No")])
