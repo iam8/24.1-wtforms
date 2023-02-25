@@ -21,7 +21,8 @@ class AddPetForm(FlaskForm):
                        render_kw={"placeholder": "Enter a pet name"})
     species = StringField("Species",
                           validators=[InputRequired(), AnyOf({"cat", "dog", "porcupine"})],
-                          render_kw={"placeholder": "Enter a species"})
+                          render_kw={"placeholder":
+                                     "Enter a species: 'cat', 'dog', or 'porcupine'"})
     photo_url = StringField("Photo URL",
                             validators=[Optional(), URL()],
                             render_kw={"placeholder": "Optional - enter a URL to a photo"})
