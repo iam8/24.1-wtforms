@@ -4,7 +4,12 @@
 
 /* App stylesheet. */
 
-.pet-img {
-    width: 15%;
+.pet-home-img {
+    width: 45%;
+    height: auto;
+}
+
+.pet-info-img {
+    width: 20%;
     height: auto;
 }
